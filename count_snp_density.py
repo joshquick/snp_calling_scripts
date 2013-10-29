@@ -38,7 +38,7 @@ def count(args):
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='Count SNP density')
 	parser.add_argument('-vcfs', dest='vcfs', help='List of vcf files to count')
-        parser.add_argument('-win', dest='win', default='1000', type=int, help='Window size')
+        parser.add_argument('--win', dest='win', default='1000', type=int, help='Window size')
 	if len(sys.argv)==1:
 		parser.print_help()
 		sys.exit()
