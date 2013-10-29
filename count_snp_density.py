@@ -11,10 +11,10 @@ def count(args):
 	count_list = []
 	win_out = []
 	window = args.win
-	last_entry = 7000000
 	files = [line.split('\n')[0] for line in open(args.vcfs, 'r')]
 	for i, each in enumerate(files):
 		records = [record for record in vcf.Reader(open(each, 'r'))]
+		last_entry = records[-1].POS
 		snp_positions = numpy.zeros(last_entry+1, dtype=bool)
 		for record in records:
 			snp_positions[record.POS] = True
