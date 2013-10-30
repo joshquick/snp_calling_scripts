@@ -21,11 +21,11 @@ def count(args):
 		temp_counts = []
 		for n in xrange(0, last_entry, window):
 			count = numpy.count_nonzero(snp_positions[n:n+window])
-			temp_counts.extend([count])
+			temp_counts.append(count)
 			if i == 0:
-				win_out.extend([n])
+				win_out.append(n)
 		if i == 0:
-			count_list.append(win_out)
+			count_list.append(win_out)	
 		count_list.append(temp_counts)
 
 	with open("test_count.csv", "wb") as fh_out:
@@ -33,7 +33,6 @@ def count(args):
 		files.insert(0, 'position')
 		writer.writerow(files)
 		writer.writerows(zip(*count_list))	
-	
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='Count SNP density')
