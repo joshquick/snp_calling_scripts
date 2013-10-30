@@ -11,6 +11,14 @@ Usage: python count_snp_density.py -vcfs vcfs.txt
 
 Where vcfs.txt contains a list of .vcf files.
 
+position,1.vcf,2.vcf,3.vcf,4.vcf
+0,0,0,0,0
+1000,0,0,0,0
+2000,0,0,0,0
+3000,0,0,0,0
+4000,0,0,0,0
+5000,0,0,0,0
+
 ------
 
 Usage: cat merged.vcf | python output_af_from_vcf.py
