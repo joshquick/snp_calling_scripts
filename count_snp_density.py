@@ -28,7 +28,7 @@ def count(args):
 			count_list.append(win_out)	
 		count_list.append(temp_counts)
 
-	with open("test_count.csv", "wb") as fh_out:
+	with open("snp_density.csv", "wb") as fh_out:
 		writer = csv.writer(fh_out)
 		files.insert(0, 'position')
 		writer.writerow(files)
