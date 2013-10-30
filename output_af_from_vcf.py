@@ -17,7 +17,7 @@ def main():
 		freqs = [sample['FREQ'].split('%')[0] if not sample['FREQ'] == None else '' for sample in samples]
 		allele_freq.append(freqs)
 
-	with open("perc_count.txt", "wb") as fh_out:
+	with open("allele_freqs.csv", "wb") as fh_out:
 		writer = csv.writer(fh_out)
 		positions.insert(0, 'sample')
 		writer.writerow(positions)
