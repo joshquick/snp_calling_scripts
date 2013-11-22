@@ -24,21 +24,8 @@ def filter(args):
 		if ref > 0 and alt > 0 and het >= 0:
 			filtered_pos[record.POS] = True
 
-	print >> sys.stderr, numpy.count_nonzero(filtered_pos), 'records retained by discriminatory filter'
-	
-	#Allele frequency filter
-	if args.use_het == True:
-		max_het = args.het_freq
-		min_het = 100 - max_het
-	
-		for n, record in enumerate(orig_records):
-			samples = record.samples
-			freqs = [float(sample['FREQ'].split('%')[0]) if not sample['FREQ'] == None else '' for sample in samples]
-			if [freq for freq in freqs if freq is not None and (freq >= min_het and freq <= max_het)]:
-				filtered_pos[record.POS] = False
+	print >> sys.stderr, numpy.count_nonzero(filtered_pos), 'records retained by discriminatory filter'	
 
-		print >> sys.stderr, numpy.count_nonzero(filtered_pos), 'records retained by allele frequency filter'
-	
 	#Sliding window density filter
 	if args.use_density == True:
 		window = args.window
@@ -50,6 +37,18 @@ def filter(args):
 					filtered_pos[pos + n] = False
 	
 		print >> sys.stderr, numpy.count_nonzero(filtered_pos), 'records retained by density filter'
+	
+	#Allele frequency filter
+	if args.use_het == True:
+		max_het = args.het_freq
+		min_het = 100 - max_het
+		for record in orig_records:
+			samples = record.samples
+			freqs = [float(sample['FREQ'].split('%')[0]) if not sample['FREQ'] == None else '' for sample in samples]
+			if [freq for freq in freqs if freq is not None and (freq >= min_het and freq <= max_het)]:
+				filtered_pos[record.POS] = False
+
+		print >> sys.stderr, numpy.count_nonzero(filtered_pos), 'records retained by allele frequency filter'
 	
 	#Write out remaining records
 	vcf_writer = vcf.Writer(sys.stdout, vcf_reader)
