@@ -32,7 +32,7 @@ def filter(args):
 			discrim_records.append(record)
 			filtered_pos[record.POS] = True
 
-	print >> sys.stderr, '%s records in VCF' %i+1
+	print >> sys.stderr, '%s records in VCF' %(i+1)
 	print >> sys.stderr, '%s records retained by discriminatory filter in %.3f' %(numpy.count_nonzero(filtered_pos), time.time()-start)
 
 	#Allele frequency filter
