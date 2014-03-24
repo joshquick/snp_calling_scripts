@@ -71,7 +71,7 @@ def filter(args):
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='VCF filter to remove non-discriminatory positions, can also optionally remove positions with heterozygous calls or high SNP density ')
-	parser.add_argument('-i', dest='file_in', help='File in')
+	parser.add_argument('file_in', help='File in')
 	parser.add_argument('--use-het-filter', dest='use_het', action='store_true', help='Use het filter')
 	parser.add_argument('--max-freq-for-het', dest='het_freq', default='90', type=float, help='Maximum allele frequency for het')
 	parser.add_argument('--use-density-filter', dest='use_density', action='store_true', help='Use density filter') 
